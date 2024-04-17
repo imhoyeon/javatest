@@ -1,0 +1,72 @@
+package com.naver.hyshin0703;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+import java.lang.System;
+
+public class Main {
+    static Map<String, Integer> inventory = new HashMap<>();
+    static int blockDestroyedCount = 0;
+
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        while (true) {
+            int a = scan.nextInt();
+            switch (a) {
+                case 1:
+                    destroyBlock();
+                    break;
+                case 2:
+                    countDestroyedBlock();
+                    break;
+                case 3:
+                    showInventory();
+                    break;
+                case 4:
+                    System.out.println("End");
+                    return;
+                default:
+                    break;
+            }
+        }
+    }
+
+    static void destroyBlock() {
+        int randomN = (int) (Math.random() * 100);
+        if (0 <= randomN && randomN <= 49) {
+            inventory.put("Stone", 1);
+            System.out.println("Stone");
+        } else if (50 <= randomN && randomN <= 69) {
+            inventory.put("Coal", 1);
+            System.out.println("Coal");
+        } else if (70 <= randomN && randomN <= 84) {
+            inventory.put("Iron", 1);
+            System.out.println("Iron");
+        } else if (85 <= randomN && randomN <= 94) {
+            inventory.put("Gold", 1);
+            System.out.println("Gold");
+        } else if (95 <= randomN && randomN <= 98) {
+            inventory.put("Emerald", 1);
+            System.out.println("Emerald");
+        } else {
+            inventory.put("Diamond", 1);
+            System.out.println("Diamond");
+        }
+        blockDestroyedCount++;
+    }
+
+    static void countDestroyedBlock() {
+        System.out.println("blockDestroyedCount: " + blockDestroyedCount);
+    }
+
+    static void showInventory() {
+        if (inventory.isEmpty()) {
+            System.out.println("no items");
+        } else {
+            for (Map.Entry<String, Integer> entry : inventory.entrySet()) {
+                System.out.println(entry.getKey() + ": " + entry.getValue()  );
+            }
+        }
+    }
+}
